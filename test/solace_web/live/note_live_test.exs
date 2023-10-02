@@ -4,8 +4,8 @@ defmodule SolaceWeb.NoteLiveTest do
   import Phoenix.LiveViewTest
   import Solace.NotesFixtures
 
-  @create_attrs %{content: "some content"}
-  @update_attrs %{content: "some updated content"}
+  @create_attrs %{content: "some content about something"}
+  @update_attrs %{content: "some updated content about something else"}
   @invalid_attrs %{content: nil}
 
   defp create_note(_) do

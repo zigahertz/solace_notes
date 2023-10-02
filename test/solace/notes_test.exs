@@ -15,16 +15,22 @@ defmodule Solace.NotesTest do
       assert Notes.list_notes() == [note]
     end
 
+    test "list_notes/1 searches notes" do
+      note = note_fixture(%{content: "a man had a plan, iraq, iran"})
+      assert Notes.list_notes("birds") == []
+      assert Notes.list_notes("iraq") == [note]
+    end
+
     test "get_note!/1 returns the note with given id" do
       note = note_fixture()
       assert Notes.get_note!(note.id) == note
     end
 
     test "create_note/1 with valid data creates a note" do
-      valid_attrs = %{content: "some content"}
+      valid_attrs = %{content: "some content about something"}
 
       assert {:ok, %Note{} = note} = Notes.create_note(valid_attrs)
-      assert note.content == "some content"
+      assert note.content == "some content about something"
     end
 
     test "create_note/1 with invalid data returns error changeset" do
@@ -33,15 +39,15 @@ defmodule Solace.NotesTest do
 
     test "update_note/2 with valid data updates the note" do
       note = note_fixture()
-      update_attrs = %{content: "some updated content"}
+      update_attrs = %{content: "some updated content about something else"}
 
       assert {:ok, %Note{} = note} = Notes.update_note(note, update_attrs)
-      assert note.content == "some updated content"
+      assert note.content == "some updated content about something else"
     end
 
     test "update_note/2 with invalid data returns error changeset" do
       note = note_fixture()
-      assert {:error, %Ecto.Changeset{}} = Notes.update_note(note, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Notes.update_note(note, @invalid_attrs) |> IO.inspect(label: :pipe)
       assert note == Notes.get_note!(note.id)
     end
 

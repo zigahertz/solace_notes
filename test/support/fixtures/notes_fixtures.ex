@@ -11,7 +11,7 @@ defmodule Solace.NotesFixtures do
     {:ok, note} =
       attrs
       |> Enum.into(%{
-        content: "some content"
+        content: "content for my note goes here"
       })
       |> Solace.Notes.create_note()
 
