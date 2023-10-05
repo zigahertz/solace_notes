@@ -18,7 +18,7 @@ defmodule SolaceWeb.NoteLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:content]} type="text" label="Content"/>
+        <.input field={@form[:content]} type="text" label="Content" phx-debounce="1000"/>
         <:actions>
           <.button phx-disable-with="Saving...">Save Note</.button>
         </:actions>
